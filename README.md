@@ -12,6 +12,7 @@ Put `guncontrol.sh` in the GunBot folder and run it with bash. You can use built
 
 **Usage**: `bash guncontrol.sh [ start [pair] [exchange], stop [pair], list ]`
 
+![](https://raw.githubusercontent.com/densmirnov/guncontrol/master/shell_1.png)
 
 ---
 
