@@ -102,7 +102,7 @@ if [[ -n "$CMD" ]]; then
 else
   echo -e "${RED}""  COMMAND MISSING!""${RESET}"
   echo " "
-  echo -e "  ${BLUE}Usage: ${WHITE}gunctl [${GREEN}${BOLD} start [pair] [exchange]${RESET}, ${RED}${BOLD}stop [pair]${RESET}, ${YELLOW}${BOLD}list${RESET} ]${RESET}\c"
+  echo -e "  ${BLUE}Usage: ${WHITE}bash guncontrol.sh [${GREEN}${BOLD} start [pair] [exchange]${RESET}, ${RED}${BOLD}stop [pair]${RESET}, ${YELLOW}${BOLD}list${RESET} ]${RESET}\c"
   echo " "
   exit 0
 fi
