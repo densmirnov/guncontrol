@@ -39,7 +39,7 @@ if [[ -n "$CMD" ]]; then
   if [[ "$CMD" == "start" ]]; then
     for f in $FILES
     do
-      NAME="${f%-*}"
+      NAME=$(echo $f| cut -d'-' -f 2)
       echo -e "${WHITE}""• Checking if ${YELLOW}$NAME ${WHITE}is running...\t${RESET}\c"
       if ! screen -list | grep -qw "$NAME"; then
         echo -e "${RED}${BOLD}- NO!${RESET}\c"
