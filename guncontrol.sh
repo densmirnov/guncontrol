@@ -5,7 +5,10 @@
 ##
 ##
 ##  Denis Smirnov / densmirnov@me.com / densmirnov.com
-##  BTC: 1denG4FjcXDeGSYeiv65R6Eyi3HWo7R8j / ETH: 0xa4C7fACEFC08e684Cd9043c3e31C86Dfb88DF75a / LSK: 10061645427951005252L
+##
+##  BTC: 1denG4FjcXDeGSYeiv65R6Eyi3HWo7R8j
+##  ETH: 0xa4C7fACEFC08e684Cd9043c3e31C86Dfb88DF75a
+##  LSK: 10061645427951005252L
 ##  -----------------------------------------------
 
 ##  STARTUP ITEMS
@@ -97,9 +100,9 @@ if [[ -n "$CMD" ]]; then
     exit 0
   fi
 else
-  echo -e "${RED}""    COMMAND MISSING!""${RESET}"
+  echo -e "${RED}""  COMMAND MISSING!""${RESET}"
   echo " "
-  echo -e "    ${BLUE}Usage: ${WHITE}gunctl [${GREEN}${BOLD} start [pair] [exchange]${RESET}, ${RED}${BOLD}stop [pair]${RESET}, ${YELLOW}${BOLD}list${RESET} ]${RESET}\c"
+  echo -e "  ${BLUE}Usage: ${WHITE}gunctl [${GREEN}${BOLD} start [pair] [exchange]${RESET}, ${RED}${BOLD}stop [pair]${RESET}, ${YELLOW}${BOLD}list${RESET} ]${RESET}\c"
   echo " "
   exit 0
 fi

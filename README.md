@@ -8,7 +8,7 @@
 
 GunControl will help you run all trading pairs simultaneously. Script will search GunBot folder for correct .js config files and will try to run'em all as background processes with `screen`. 
 
-Also you can use built-in script commands as well. Script can start / stop all or shows a list of currently running pairs. 
+Put `guncontrol.sh` in the GunBot folder and run it with bash. You can use built-in script commands to start/stop trading for all pairs or just show a list of currently running pairs. 
 
 **Usage**: `bash guncontrol.sh [ start [pair] [exchange], stop [pair], list ]`
 
