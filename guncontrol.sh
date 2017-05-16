@@ -13,7 +13,7 @@
 
 ##  STARTUP ITEMS
 ##  -----------------------------------------------
-export BOLD && export RED && export GREEN && export BLUE && export YELLOW && export WHITE && export RESET && export CMD && export BOTFOLDER
+export BOLD && export RED && export GREEN && export BLUE && export YELLOW && export WHITE && export RESET && export TOPLINE && export BOTTOMLINE && export EMPTYLINE
 BOLD=$(tput bold)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
@@ -21,14 +21,17 @@ BLUE=$(tput setaf 4)
 YELLOW=$(tput setaf 3)
 WHITE=$(tput setaf 7)
 RESET=$(tput sgr0)
+TOPLINE=""
+BOTTOMLINE="\n────────────────────────────────────────────────────────────────"
+EMPTYLINE="│                                                              │"
 
 export CMD && export BOTFOLDER && export FILES && export NAME
 CMD=$1
 BOTFOLDER="${PWD}"
 FILES="*-config.js"
 
-echo -e "\n  ${GREEN}${BOLD}GUNBOT LAUNCHER - v0.0.1${RESET} ${BLUE} $(date +%d.%m.%Y\ %H:%M)${RESET}"
-echo -e "${GREEN}""==============================================\n""${RESET}"
+# clear
+echo -e "${BLUE}""┌──────────────────────────────────────────────────────────────┐\n${BLUE}│${RESET}  ${GREEN}${BOLD}GUNBOT LAUNCHER v0.0.2${RESET}                   ${BLUE} $(date +%d.%m.%Y\ %H:%M)${RESET}  ${BLUE}│\n└──────────────────────────────────────────────────────────────┘\n""${RESET}"
 
 ##  OPTIONS
 ##  -----------------------------------------------
@@ -40,11 +43,10 @@ if [[ -n "$CMD" ]]; then
     for f in $FILES
     do
       NAME="${f%-*}"
-      echo -e "${WHITE}""• Checking if ${YELLOW}$NAME ${WHITE}is running...\t${RESET}\c"
+      echo -e "${WHITE}""• Checking if ${YELLOW}$NAME ${WHITE}is running...${RESET}\t\c"
       if ! screen -list | grep -qw "$NAME"; then
-        echo -e "${RED}${BOLD}- NO!${RESET}\c"
+        echo -e "${RED}【${BOLD}NO!${RESET}】${RESET}\t\c"
         echo -n "${BLUE} [ starting ${RESET}"
-        # screen -dmS $NAME
         screen -dmS "$NAME" "${BOTFOLDER}"/gunbot "$NAME" poloniex && sleep 1
         echo -n "${BLUE}...1 ${RESET}" && sleep 1
         echo -n "${BLUE}...2 ${RESET}" && sleep 1
@@ -52,14 +54,13 @@ if [[ -n "$CMD" ]]; then
         echo -n "${BLUE}...4 ${RESET}" && sleep 1
         echo -e "${BLUE}...5! ]  ${RESET}${GREEN}${BOLD}+ Done!${RESET}\n"
       else
-        echo -e "\t${GREEN}${BOLD}+ YES! ${RESET}\c"
+        echo -e "\t${GREEN}【${BOLD}YES!】${RESET}\t\c"
         echo -n "${BLUE} [ skipping... ]${RESET}"
         echo -e " " && sleep 0.2
       fi
     done
     echo -e " "
-    echo -e "${GREEN}""  ============================\n""${RESET}"
-    echo -e "${GREEN}""${BOLD}""Done! All Pairs are running!\n""${RESET}"
+    echo -e "${GREEN}""${BOLD}""  Done!${RESET} ${GREEN}All Pairs are running!\n""${RESET}"
     exit 0
   fi
 
@@ -71,19 +72,18 @@ if [[ -n "$CMD" ]]; then
       NAME="${f%-*}"
       echo -e "${WHITE}• Checking if ${YELLOW}$NAME ${WHITE}is running...\t${RESET}\c"
       if ! screen -list | grep -q "$NAME"; then
-        echo -e "${GREEN}${BOLD}【 NO! 】\t${RESET}\c"
+        echo -e "${GREEN}【${BOLD}NO!${RESET}】${RESET}\t\c"
         echo -n "${BLUE} [ skipping... ]${RESET}"
-        echo -e " "
+        echo -e " " && sleep 0.2
       else
-        echo -e "${RED}${BOLD}【 YES! 】${RESET}"
+        echo -e "${RED}【${BOLD}YES!${RESET}】${RESET}\t\c"
         echo -n "${BLUE}[ exiting... ]${RESET}"
-        echo -e " "
+        echo -e " " && sleep 0.2
         screen -S "$NAME" -X quit && sleep 0.2
       fi
     done
     echo -e " "
-    echo -e "${GREEN}""============================""${RESET}"
-    echo -e "${GREEN}${BOLD}Done! All Pairs are stopped! ${RESET}\n"
+    echo -e "  ${GREEN}${BOLD}DONE!${RESET} ${GREEN}All Pairs are stopped! ${RESET}\n"
     exit 0
   fi
 
@@ -94,14 +94,17 @@ if [[ -n "$CMD" ]]; then
     LOOKUP="ps aux"
     HEADER="%-12b\t%-12s\t%-12b\n"
     DIVIDER=${BLUE}"------------"${RESET}
-    echo -e "${BLUE}""\n  STRATEGY" "  PAIR" "  EXCHANGE""${RESET}"
-    echo -e "${DIVIDER}" "${DIVIDER}" "${DIVIDER}"
-    $LOOKUP | grep -v grep | grep -v gunctl | grep "SCREEN" | awk '{printf "  %-12s\t  %-12s\t  %-12s\n",$09,$13,$16}'
+    echo -e "${WHITE}""  RUNNING PAIRS:" "${RESET}"
+    echo -e " ${WHITE}──────────────────────────────────────────────────────────── ""${RESET}"
+    # echo -e "${DIVIDER}" "${DIVIDER}" "${DIVIDER}"
+    $LOOKUP | grep -v grep | grep "SCREEN" | awk '{printf "   %-12s\t   %-12s\t   %-12s  │ \n", $09, $13, $16}'
+    # echo -e "${BLUE}""${BOTTOMLINE}""${RESET}"
     exit 0
   fi
 else
-  echo -e "${RED}""  COMMAND MISSING!""${RESET}"
-  echo -e "  ${BLUE}Usage: ${WHITE}bash guncontrol.sh [${GREEN}${BOLD} start ${RESET}, ${RED}${BOLD}stop ${RESET}, ${YELLOW}${BOLD}list${RESET} ]${RESET}\c"
-  echo " "
+  echo -e "${RED}""  ${RED}COMMAND MISSING!""${RESET}"
+  echo -e " ${RED}─────────────────────────────────────────────────────────────""${RESET}"
+  echo -e "  ${BLUE}Usage: ${WHITE}bash guncontrol.sh [${GREEN}${BOLD} start ${RESET}| ${RED}${BOLD}stop ${RESET}| ${YELLOW}${BOLD}list${RESET} ]${RESET}"
+  # echo -e "${BLUE}""${BOTTOMLINE}""${RESET}"
   exit 0
 fi
