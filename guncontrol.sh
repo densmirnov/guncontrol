@@ -18,7 +18,7 @@
     RESET=$(tput sgr0) && BOLD=$(tput bold) && RED=$(tput setaf 1) && GREEN=$(tput setaf 2) && BLUE=$(tput setaf 4) && YELLOW=$(tput setaf 3) && WHITE=$(tput setaf 7) && BOTTOM="\n ─────────────────────────────────────────────────────── \n"
 
     export CMD && export ARCH && export BOTFOLDER && export FILES && export NAME && export NAME1 && export GUNTHY
-    CMD=$1 && ARCH=$(uname -m) && BOTFOLDER="$(pwd)" && FILES="*-config.js" && NAME1="${f%-*}" && NAME=${NAME1#"poloniex-"} && GUNTHY=""
+    CMD=$1 && ARCH=$(uname -m) && BOTFOLDER="$(pwd)" && FILES="*-config.js" && GUNTHY=""
 
 ##  OS DETECTION
 ##  -----------------------------------------------
@@ -38,7 +38,7 @@
     echo -e "${BLUE}""\n┌───────────────────────────────────────────────────────┐\n${BLUE}│${RESET}  ${GREEN}GUNBOT LAUNCHER v0.0.2${RESET}             ${BLUE}$(date +%d.%m.%Y\ %H:%M)${RESET}  ${BLUE}│\n└───────────────────────────────────────────────────────┘\n""${RESET}"
 
     if [[ -n "$CMD" ]]; then
-      ##
+
       ##  START
       ##  -----------------------------------------------
       if [[ "$CMD" == "start" ]]; then
@@ -46,16 +46,15 @@
         for f in $FILES
         do
           echo -e "${WHITE}"" • Checking ${YELLOW}$NAME${WHITE}...  ${RESET}\c"
-          if ! screen -list | grep -wo "$NAME"; then
+          NAME=$(echo "$f"| cut -d'-' -f 2)
+          if ! screen -list | grep -qw "$NAME"; then
             echo -e "${BLUE}""\t\t\tSTOPPED!\n   Starting \c""${RESET}"
-            screen -dmS "$NAME" "${BOTFOLDER}"/"$GUNTHY" "$NAME" poloniex && sleep 1
-            echo -n "${BLUE}...1 ${RESET}" && sleep 1
-            echo -n "${BLUE}...2 ${RESET}" && sleep 1
-            echo -n "${BLUE}...3 ${RESET}" && sleep 1
-            echo -n "${BLUE}...4 ${RESET}" && sleep 1
-            echo -e "${BLUE}...5!  ${RESET}${GREEN}            DONE!${RESET}"
+            screen -dmS "$NAME" "${BOTFOLDER}"/"$GUNTHY" "$NAME" poloniex && sleep 0.25
+            echo -n "${BLUE}...1 ${RESET}" && sleep 0.25
+            echo -n "${BLUE}...2 ${RESET}" && sleep 0.25
+            echo -e "${BLUE}...3!  ${RESET}${GREEN}            DONE!${RESET}"
           else
-            echo -e "${BLUE}""\t\t\t\tRUNNING!\n   Skipping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.2
+            echo -e "${BLUE}""\t\t\t\tRUNNING!\n   Skipping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.25
           fi
         done
         echo -e "${WHITE}""$BOTTOM   ALL PAIRS ARE RUNNING!" "${RESET}"
@@ -69,11 +68,12 @@
         for f in $FILES
         do
           echo -e "${WHITE} • Checking ${YELLOW}$NAME ${WHITE}... \t\t\t${RESET}\c"
-          if ! screen -list | grep -q "$NAME"; then
-            echo -e "${BLUE}""STOPPED!\n   Skipping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.2
+          NAME=$(echo "$f"| cut -d'-' -f 2)
+          if ! screen -list | grep -qw "$NAME"; then
+            echo -e "${BLUE}""\tSTOPPED!\n   Skipping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.25
           else
-            echo -e "${BLUE}""RUNNING!\n   Stopping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.2
-            screen -S "$NAME" -X quit && sleep 0.2
+            echo -e "${BLUE}""\tRUNNING!\n   Stopping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.25
+            screen -S "$NAME" -X quit && sleep 0.25
           fi
         done
         echo -e "${WHITE}""$BOTTOM   ALL PAIRS ARE STOPPED!" "${RESET}"

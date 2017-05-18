@@ -3,7 +3,7 @@
 
 ---
 
-**v0.0.1** • May 2017.
+**v0.0.2** • May 2017.
 
 I'm using [**GunBot**](https://gunthy.org) for quite some time mostly on various *nix-based VPS, so the process of editing and re-re-running all trading pairs might consume a lot of time. To optimize this part I have created very simple shell-script for simultaneously starting/stopping all config files in GunBot folder. So, please welcome GunControl!
 
@@ -17,8 +17,14 @@ Put [`guncontrol.sh`](https://raw.githubusercontent.com/densmirnov/guncontrol/ma
 
 ---
 
+
 ```
+CREDITS
+---------------------------------------------------
 Denis Smirnov / densmirnov@me.com / densmirnov.com
+Cudos to gionni@gunthy.org for his start/stop script! 
+
+---------------------------------------------------
 
 BTC: 1denG4FjcXDeGSYeiv65R6Eyi3HWo7R8j
 ETH: 0xa4C7fACEFC08e684Cd9043c3e31C86Dfb88DF75a
