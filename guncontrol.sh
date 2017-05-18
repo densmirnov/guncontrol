@@ -48,7 +48,7 @@ if [[ -n "$CMD" ]]; then
       NAME=${NAME1#"poloniex-"}
 
       echo -e "${WHITE}"" • Checking ${YELLOW}$NAME${WHITE}...  ${RESET}\c"
-      if ! screen -list | grep -q "$NAME"; then
+      if ! screen -list | grep -wo "$NAME"; then
         echo -e "${BLUE}""\t\t\tSTOPPED!\n   Starting \c""${RESET}"
         screen -dmS "$NAME" "${BOTFOLDER}"/gunbot "$NAME" poloniex && sleep 1
         echo -n "${BLUE}...1 ${RESET}" && sleep 1
