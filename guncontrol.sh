@@ -32,11 +32,10 @@
       GUNTHY="Unknown OS"
     fi
 
-
 ##  MAIN SCRIPT
 ##  -----------------------------------------------
     # clear
-    echo -e "${BLUE}""\n┌───────────────────────────────────────────────────────┐\n${BLUE}│${RESET}  ${GREEN}GUNBOT LAUNCHER v0.0.2${RESET}             ${BLUE}$(date +%d.%m.%Y\ %H:%M)${RESET}  ${BLUE}│\n└───────────────────────────────────────────────────────┘""${RESET}"
+    echo -e "${BLUE}""\n┌───────────────────────────────────────────────────────┐\n${BLUE}│${RESET}  ${GREEN}GUNBOT LAUNCHER v0.0.2${RESET}             ${BLUE}$(date +%d.%m.%Y\ %H:%M)${RESET}  ${BLUE}│\n└───────────────────────────────────────────────────────┘\n""${RESET}"
 
     if [[ -n "$CMD" ]]; then
       ##
@@ -56,10 +55,10 @@
             echo -n "${BLUE}...4 ${RESET}" && sleep 1
             echo -e "${BLUE}...5!  ${RESET}${GREEN}            DONE!${RESET}"
           else
-            echo -e "${BLUE}""\t\t\tRUNNING!\n   Skipping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.2
+            echo -e "${BLUE}""\t\t\t\tRUNNING!\n   Skipping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.2
           fi
         done
-        echo -e "${WHITE}""\n ─────────────────────────────────────────────────────── \n   ALL PAIRS ARE RUNNING!" "${RESET}"
+        echo -e "${WHITE}""$BOTTOM   ALL PAIRS ARE RUNNING!" "${RESET}"
         exit 0
       fi
 
@@ -94,7 +93,7 @@
         exit 0
       fi
     else
-      echo -e "${RED}""  ${RED}COMMAND MISSING$BOTTOM""${RESET}"
+      echo -e "${RED}""  COMMAND MISSING$BOTTOM""${RESET}"
       echo -e "  ${BLUE}Usage: ${WHITE}bash guncontrol.sh [${GREEN}${BOLD} start ${RESET}| ${RED}${BOLD}stop ${RESET}| ${YELLOW}${BOLD}list${RESET} ]${RESET}"
         echo -e "${RED}""$BOTTOM" "${RESET}"
       exit 0
