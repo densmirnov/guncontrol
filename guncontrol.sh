@@ -50,7 +50,7 @@ if [[ -n "$CMD" ]]; then
       echo -e "${WHITE}"" • Checking ${YELLOW}$NAME${WHITE}...  ${RESET}\c"
       if ! screen -list | grep -wo "$NAME"; then
         echo -e "${BLUE}""\t\t\tSTOPPED!\n   Starting \c""${RESET}"
-        screen -dmS "$NAME" "${BOTFOLDER}"/gunbot "$NAME" poloniex && sleep 1
+        screen -dmS "$NAME" "${BOTFOLDER}"/gunthy-linuxx64 "$NAME" poloniex && sleep 1
         echo -n "${BLUE}...1 ${RESET}" && sleep 1
         echo -n "${BLUE}...2 ${RESET}" && sleep 1
         echo -n "${BLUE}...3 ${RESET}" && sleep 1
