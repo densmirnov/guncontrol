@@ -8,6 +8,7 @@
 ##  Also credits goes to gionni@gunthy.org for his GunBot Start/Stop Bash Script
 ##
 ##  BTC: 1denG4FjcXDeGSYeiv65R6Eyi3HWo7R8j
+##  LTC: Li1ojtx9cwB7SpruVdBAojcUs9j2VLgU6G
 ##  ETH: 0xa4C7fACEFC08e684Cd9043c3e31C86Dfb88DF75a
 ##  LSK: 10061645427951005252L
 ##  -----------------------------------------------
@@ -45,16 +46,16 @@
         echo -e "${WHITE}""   STARTING GUNBOT...$BOTTOM" "${RESET}"
         for f in $FILES
         do
-          echo -e "${WHITE}"" • Checking ${YELLOW}$NAME${WHITE}...  ${RESET}\c"
+          echo -e "${WHITE}"" • Checking ${YELLOW}$NAME${WHITE}...\t${RESET}\c"
           NAME=$(echo "$f"| cut -d'-' -f 2)
           if ! screen -list | grep -qw "$NAME"; then
-            echo -e "${BLUE}""\t\t\tSTOPPED!\n   Starting \c""${RESET}"
+            echo -e "${BLUE}"" \t\t\t        STOPPED!\n   Starting \c""${RESET}"
             screen -dmS "$NAME" "${BOTFOLDER}"/"$GUNTHY" "$NAME" poloniex && sleep 0.25
             echo -n "${BLUE}...1 ${RESET}" && sleep 0.25
             echo -n "${BLUE}...2 ${RESET}" && sleep 0.25
-            echo -e "${BLUE}...3!  ${RESET}${GREEN}            DONE!${RESET}"
+            echo -e "${BLUE}...3!  ${RESET}                      ${GREEN}DONE!${RESET}"
           else
-            echo -e "${BLUE}""\t\t\t\tRUNNING!\n   Skipping...                                     ${GREEN}DONE!""${RESET}" && sleep 0.25
+            echo -e "${BLUE}""\t\t\tRUNNING!\n   Skipping...                                         ${GREEN}DONE!""${RESET}" && sleep 0.25
           fi
         done
         echo -e "${WHITE}""$BOTTOM   ALL PAIRS ARE RUNNING!" "${RESET}"
